@@ -20,12 +20,19 @@ gulp.task('css', () =>
       .pipe(sourcemaps.write('../maps'))
       .pipe(gulp.dest(`${dist}/css`))
 );
-gulp.task('js', () =>
-  gulp.src(`${src}/js/*.js`)
+gulp.task('js:app', () =>
+  gulp.src(`${src}/app.js`)
       .pipe(babel({
           presets: ['env']
       }))
-      .pipe(gulp.dest(`${dist}/js`))
+      .pipe(gulp.dest(dist))
+);
+gulp.task('js', ['js:app'], () =>
+  gulp.src(`${src}/components/*.js`)
+      .pipe(babel({
+          presets: ['env']
+      }))
+      .pipe(gulp.dest(`${dist}/components`))
 );
 gulp.task('images', () =>
   gulp.src(`${src}/images/**/*.+(png|jpg|gif|svg)`)
@@ -40,7 +47,8 @@ gulp.task('fonts', () =>
 gulp.task('watch', () => {
   gulp.watch(`${src}/css/*.css`, ['css']);
   gulp.watch(`${src}/*.html`, ['html']);
-  gulp.watch(`${src}/js/*.js`, ['js']);
+  gulp.watch(`${src}/components/*.js`, ['js']);
+  gulp.watch(`${src}/app.js`, ['js:app']);
 })
 
 gulp.task('default', ['html', 'css', 'js', 'images', 'fonts']);

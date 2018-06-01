@@ -1,12 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="App">
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" href="./css/main.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
 </head>
 <body>
-	<h1>Hello world !</h1>
-	<script src="./js/main.js"></script>
+	<div ng-controller="todoController">
+		<h1>{{title}}</h1>
+		<section>
+			<ul>
+				<li ng-repeat="todo in todos">
+					<input type="checkbox" ng-model="todo.done">
+					<span>{{todo.text}}</span>
+				</li>
+			</ul>
+		</section>
+		<section>
+			<form ng-submit="addTodo()">
+				<input type="text" ng-model="input">
+				<input type="submit">
+			</form>
+		</section>
+	</div>
+
+	<script src="./app.js"></script>
 </body>
 </html>
