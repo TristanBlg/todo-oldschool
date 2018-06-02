@@ -1,3 +1,154 @@
-h1 {
-	transform: translate3d(20px, 20px, 0);
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+html,
+body{
+	height: 100%;
+}
+html{
+	font-size: 62.5%;
+	font-size: .625em;
+}
+body{
+	font-family: 'Open Sans', verdana, arial, sans-serif;
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1.4em;
+}
+ul{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+
+.app{
+	text-align: center;
+	background-color: #1976d2;
+    background: linear-gradient(145deg,#0d47a1,#42a5f5);
+	display: flex;
+	padding: 10px;
+	min-height: 100%;
+}
+
+.container{
+	width: 100%;
+	max-width: 480px;
+	padding: 40px;
+	background: #fff;
+	border-radius: 6px;
+	margin: auto;
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, .3);
+}
+
+.title{
+	font-weight: 600;
+	font-size: 1.8rem;
+	margin: 0 0 40px 0;
+}
+
+/*List*/
+.list{
+	text-align: left;
+	padding: 0;
+	margin: 0 0 40px 0;
+}
+.list .list__todo.todo{
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+}
+.list .list__todo.todo .todo__state.state{
+	margin: 0 10px 0 0;
+	position: relative;
+}
+.list .list__todo.todo .todo__state.state .state__input,
+.list .list__todo.todo .todo__state.state .state__overlay{
+	height: 1.6rem;
+	width: 1.6rem;
+	margin: 0;
+}
+.list .list__todo.todo .todo__state.state .state__input{
+	opacity: 0;
+	position: absolute;
+	z-index: 10;
+}
+.list .list__todo.todo .todo__state.state .state__overlay{
+	border: 1px solid #e0e0e0;
+	position: relative;
+	z-index: 0;
+	transition: opacity .2s;
+}
+.list .list__todo.todo .todo__state.state .state__overlay::before,
+.list .list__todo.todo .todo__state.state .state__overlay::after{
+	display: block;
+	opacity: 0;
+	position: absolute;
+	content: "";
+	background: #000;
+	transform: rotate(45deg);
+}
+.list .list__todo.todo .todo__state.state .state__overlay::before{
+	height: 14px;
+    width: 1px;
+    left: 9px;
+    top: 2px;
+}
+.list .list__todo.todo .todo__state.state .state__overlay::after{
+	width: 8px;
+    height: 1px;
+    top: 11px;
+    left: -2px;
+}
+.list .list__todo.todo .todo__state.state .state__input:checked ~ .state__overlay{
+	border-color: transparent;
+	transition: none;
+}
+.list .list__todo.todo .todo__state.state .state__input:checked ~ .state__overlay::before,
+.list .list__todo.todo .todo__state.state .state__input:checked ~ .state__overlay::after{
+	transition: opacity .2s;
+	opacity: 1;
+}
+.list .list__todo.todo .todo__text{
+	flex: 1;
+	transition: opacity .2s;
+}
+.list .list__todo.todo .todo__text.todo__text--done{
+	opacity: .2;
+}
+.list .list__todo.todo .todo__action{
+	display: block;
+	font-size: 0;
+	margin: 0 0 0 10px;
+}
+.list .list__todo.todo .todo__action svg{
+	height: 1.6rem;
+	width: 1.6rem;
+}
+
+/*Form*/
+.form{
+	margin: 0;
+}
+.form .form__input{
+	width: 100%;
+	padding: 10px;
+	display: block;
+	border: none;
+	margin: 0;
+	font-size: 1.4rem;
+}
+.form .form__input.form__input--text{
+	margin-bottom: 10px;
+	border: 1px solid #e0e0e0;
+}
+.form .form__input.form__input--submit{
+	color: #fff;
+	font-weight: 600;
+	text-transform: uppercase;
+	cursor: pointer;
+	background-color: #55efc4;
 }

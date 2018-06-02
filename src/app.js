@@ -14,9 +14,8 @@ app.controller('todoController', function($scope){
 		}
 	];
 
-	$scope.addTodo = function(){
+	$scope.addTodo = () => {
 		if($scope.input.length > 0) {
-			console.log($scope.input);
 			$scope.todos.push({
 				"text": $scope.input,
 				"done": false
@@ -24,6 +23,16 @@ app.controller('todoController', function($scope){
 			$scope.input = "";
 		} else {
 			alert('Veuillez saisir au moins 1 caractère.');
+		}
+	}
+	$scope.editTodo = key => {
+		$scope.todos[key].text = prompt("Changer la todo :", $scope.todos[key].text);
+	}
+	$scope.removeTodo = key => {
+		if(confirm("Êtes-vous sûr de vouloir suprimer cette todo ?")){
+			$scope.todos.splice(key, 1);
+		} else {
+			return false;
 		}
 	}
 });
